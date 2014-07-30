@@ -4,7 +4,7 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 server.listen(process.env.PORT || 8001);
-app.use(express.static(__dirname));
+//app.use(express.static(__dirname));
 
 app.get('/', function (req, res) {
     console.log('User-Agent: ' + req.headers['user-agent']);

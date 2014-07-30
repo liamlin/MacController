@@ -3,15 +3,20 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Mac Controller - Mobile</title>
+    <style>
+        ul.directives {
+            font-size: 150%;
+        }
+
+    </style>
 </head>
 <body>
-Mobile, dude
-    <ul>
+Mobile
+    <ul class="directives">
         <li><a id="1" class="helper_action_link" href="#">Increase Volume</a></li>
         <li><a id="2" class="helper_action_link" href="#">Decrease Volume</a></li>
         <li><a id="3" class="helper_action_link" href="#">Mute</a></li>
         <li><a id="4" class="helper_action_link" href="#">Unmute</a></li>
-        <li><a id="5" class="helper_action_link" href="#">Get Current Volume and Mute status</a></li>
     </ul>
     <script src="/socket.io/socket.io.js"></script>
     <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
