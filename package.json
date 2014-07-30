@@ -9,6 +9,10 @@
     "mongoose": "^3.8.14",
     "bone.io": "^0.8.9"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liamlin/MacController.git"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
