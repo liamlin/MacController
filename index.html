@@ -3,38 +3,13 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Mac Controller - Mac</title>
-    <style>
-        a.helperlink {
-            display: none;
-        }
-    </style>
 </head>
 <body>
-Mac, dude
-    <a href="maccontroller.zip">Download Mac Controller Helper</a>
-    <a class="helperlink" id="1" href="maccontroller://MacController?action=1">Increase Volume</a>
-    <a class="helperlink" id="2" href="maccontroller://MacController?action=2">Decrease Volume</a>
-    <a class="helperlink" id="3" href="maccontroller://MacController?action=3">Mute</a>
-    <a class="helperlink" id="4" href="maccontroller://MacController?action=4">Unmute</a>
-    <a class="helperlink" id="5" href="maccontroller://MacController?action=5">Get Current Volume and Mute status</a>
-
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script>
-        var socket = io.connect(window.location.origin);
-        socket.on('action', function (data) {
-            console.log(data);
-            $("a#"+data).click();
-            socket.emit('result', true);
-        });
-        $(function(){
-            $("a.helperlink").click(function(e) {
-                e.preventDefault();
-                console.log(this.textContent);
-                $(location).attr('href', $(this).attr("href"));
-            });
-        });
-    </script>
+    <ol>
+        <li><a href="http://bit.ly/1uQNMM4">Download Mac Controller Helper</a></li>
+        <li><a href="http://mozilla.com.tw/firefox/download/">Get Firefox!</a></li>
+        <li><a href="http://bit.ly/UGkpeV">Download and install the Firefox add-on</a></li>
+    </ol>
 </body>
 </html>
 
