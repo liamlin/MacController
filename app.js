@@ -13,7 +13,6 @@ server.listen(process.env.PORT || 8001);
 //app.use(express.static(__dirname));
 
 app.get('/', function (req, res) {
-//    var uid = req.query.uid;
     res.sendfile(__dirname + '/m.html');
 //    console.log('User-Agent: ' + req.headers['user-agent']);
 //    var ua = req.headers['user-agent'].toLowerCase();
