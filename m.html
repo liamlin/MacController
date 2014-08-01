@@ -2,36 +2,81 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mac Controller - Mobile</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css" />
     <style>
-        ul.directives {
-            font-size: 150%;
+        ul {
+            list-style-type: none;
+            padding-left: 0px;
+            display: none;
         }
-
+        span.btn-primary {
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-Mobile
-    <ul class="directives">
-        <li><a id="1" class="helper_action_link" href="#">Increase Volume</a></li>
-        <li><a id="2" class="helper_action_link" href="#">Decrease Volume</a></li>
-        <li><a id="3" class="helper_action_link" href="#">Mute</a></li>
-        <li><a id="4" class="helper_action_link" href="#">Unmute</a></li>
-    </ul>
+    <div class="container">
+        <span class="btn btn-lg btn-primary btn-block">Volume Controller</span>
+        <ul class="directives volume">
+            <li><button id="1" class="ui-btn ui-corner-all ui-shadow burst">Increase Volume</button></li>
+            <li><button id="2" class="ui-btn ui-corner-all ui-shadow burst">Decrease Volume</button></li>
+            <li><button id="3" class="ui-btn ui-corner-all ui-shadow single">Mute</button></li>
+            <li><button id="4" class="ui-btn ui-corner-all ui-shadow single">Unmute</button></li>
+        </ul>
+        <span class="btn btn-lg btn-primary btn-block">Tab Controller</span>
+        <ul class="directives tab">
+            <li><button id="5" class="ui-btn ui-corner-all ui-shadow single">Previous Tab</button></li>
+            <li><button id="6" class="ui-btn ui-corner-all ui-shadow single">Next Tab</button></li>
+            <li><button id="7" class="ui-btn ui-corner-all ui-shadow burst">Scroll Up</button></li>
+            <li><button id="8" class="ui-btn ui-corner-all ui-shadow burst">Scroll Down</button></li>
+            <li><button id="9" class="ui-btn ui-corner-all ui-shadow single">New Tab</button><input type="text" /></li>
+        </ul>
+    </div>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script>
-        var socket = io.connect(window.location.origin);
-        socket.on('result', function (data) {
-            console.log(data);
-        });
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+//        var uid = getParameterByName('uid');
+        var uid = "5566";
+        if (uid) {
+            var socket = io.connect(window.location.origin);
+//            socket.on('result', function (data) {
+//                console.log(data);
+//            });
+        }
+
         $(function(){
-            $("a.helper_action_link").click(function(e){
+            var timeoutId = 0;
+            $("span.btn-primary").click(function(e){
+                e.preventDefault();
+                $("ul").hide();
+                $(this).next().show();
+            });
+
+            $("button").click(function(e){
                 e.preventDefault();
                 $this = $(this);
                 var toDo = $this.attr("id");
-                console.log(toDo);
-                socket.emit('action', toDo);
+                if (toDo == "9") {
+                    var newTab = $this.next().val();
+                    if (newTab)
+                        socket.emit('action', {'uid': uid, 'newTab': newTab});
+                } else
+                    socket.emit('action', {'uid': uid, 'toDo': toDo});
             });
         });
     </script>
