@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.css" />
+    <!-- Inline styles !? -->
     <style>
         ul {
             list-style-type: none;
@@ -45,6 +46,7 @@
     <script src="http://code.jquery.com/mobile/1.4.3/jquery.mobile-1.4.3.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <script>
+        // Inline javascript !?
         function getParameterByName(name) {
             name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
             var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
@@ -52,6 +54,7 @@
             return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
 
+        // What happens if the socket fails to connect? js errors will happen down below that assume this worked
         var uid = getParameterByName('uid');
         if (uid) {
             var socket = io.connect(window.location.origin);
@@ -69,6 +72,7 @@
                 e.preventDefault();
                 $this = $(this);
                 var toDo = $this.attr("id");
+                // Should be a DRYer to write this and not duplicate the socket.emit like mentioned in app.js code review
                 if (toDo == "10") {
                     var newTab = $("#newTab").val();
                     if (newTab)
