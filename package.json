@@ -1,7 +1,7 @@
 {
-  "name": "maccontroller",
+  "name": "Cntrl.io",
   "version": "0.0.1",
-  "description": "This service helps you control the system volume of your Mac OS.",
+  "description": "This service helps you control the system volume of your Mac OS and the firefox tabs.",
   "main": "app.js",
   "dependencies": {
     "express": "^4.7.2",
@@ -20,6 +20,6 @@
   "engines": {
     "node": "0.10.29"
   },
-  "author": "Wilson",
+  "author": "Wilson Lin",
   "license": "MIT"
 }

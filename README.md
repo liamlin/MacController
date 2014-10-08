@@ -1,6 +1,6 @@
-Remote MacOS Controller
+Cntrl.io
 ====
 
-#### This service helps you controll the system volume of your MacOS and your tabs in Firefox with you smartphone, via the Internet. 
+#### This service helps you control your MacOS system volume and the Firefox tabs with you smartphone, via the Internet.
 
-For live demo, visit http://maccontroller.herokuapp.com/
+For live demo, visit http://cntrl.io/
