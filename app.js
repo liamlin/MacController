@@ -20,10 +20,10 @@ app.get('/', function (req, res) {
     } else {
         res.sendfile(__dirname + '/index.html');
     }
-}).configure(function() {
-    app.use('/images', express.static(__dirname + '/images'));
-    app.use('/main.css', express.static(__dirname + '/main.css'));
 });
+
+app.use('/images', express.static(__dirname + '/images'));
+app.use('/main.css', express.static(__dirname + '/main.css'));
 
 var allClients = [];
 
