@@ -37,7 +37,7 @@
             <li><button id="7" class="ui-btn ui-corner-all ui-shadow burst">Scroll Up</button></li>
             <li><button id="8" class="ui-btn ui-corner-all ui-shadow burst">Scroll Down</button></li>
             <li><button id="9" class="ui-btn ui-corner-all ui-shadow single">Close Tab</button></li>
-            <li><button id="10" class="ui-btn ui-corner-all ui-shadow single">New Tab</button><input id="newTab" type="text" /></li>
+            <li><button id="10" class="ui-btn ui-corner-all ui-shadow single">New Tab</button><input id="newTab" type="text" value="http://" /></li>
         </ul>
     </div>
     <script src="/socket.io/socket.io.js"></script>
@@ -71,10 +71,15 @@
                 var toDo = $this.attr("id");
                 if (toDo == "10") {
                     var newTab = $("#newTab").val();
-                    if (newTab)
+                    if (newTab && newTab.indexOf("http") == 0
+                            && newTab.indexOf(".") > 0) {
                         socket.emit('action', {'uid': uid, 'newTab': newTab});
-                } else
+                    } else {
+                        alert("To open a new tab, fill a valid url in the field below then press the 'New Tab' button");
+                    }
+                } else {
                     socket.emit('action', {'uid': uid, 'toDo': toDo});
+                }
             });
         });
     </script>
